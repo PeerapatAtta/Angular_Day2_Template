@@ -9,8 +9,10 @@ import {
   withInMemoryScrolling,
   withViewTransitions
 } from '@angular/router';
-
+//For
 import { routes } from './app/app.routes';
+//For connect API
+import { provideHttpClient } from '@angular/common/http';
 
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'top',
@@ -23,7 +25,8 @@ bootstrapApplication(AppComponent, {
       routes, 
       withInMemoryScrolling(scrollConfig),
       withViewTransitions()
-    )
+    ),
+    provideHttpClient(),
   ]
 })
   .catch((err) => console.error(err));

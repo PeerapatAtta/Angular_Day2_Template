@@ -1,5 +1,5 @@
+//
 import { bootstrapApplication } from '@angular/platform-browser';
-
 // Import AppComponent from app.component.ts
 import { AppComponent } from './app/app.component';
 //Start page from above

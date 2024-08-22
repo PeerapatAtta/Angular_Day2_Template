@@ -1,5 +1,8 @@
+// 
+import { Component, ElementRef, ViewChild, inject } from '@angular/core';
+// Optimized Image
 import { NgOptimizedImage } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+// Form
 import {
   ReactiveFormsModule,
   FormsModule,
@@ -7,8 +10,10 @@ import {
   FormBuilder,
   Validators
 } from '@angular/forms';
-//
+// Pop up text alert
 import Swal from 'sweetalert2';
+//SEO > View Source
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +23,7 @@ import Swal from 'sweetalert2';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
+
 export class LoginComponent {
 
   //Formgroup
@@ -34,17 +40,26 @@ export class LoginComponent {
   //Get input field by elementRef
   @ViewChild('emailInput') emailInput!: ElementRef
 
-  //Constructor
+  //Constructor, DI
   constructor(
     private formBuilder: FormBuilder
   ) { }
+  //DI
+  private meta = inject(Meta);
 
   //ngOnInit
   ngOnInit() {
+    //
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
-    })
+    });
+    //Add SEO > Meta
+    this.meta.addTag({
+      title: 'Login - Stock Management',
+      keywords: 'stock management, Login, Web Application',
+      content: 'Stock Management is a simple web application that allows you to manage your stock. Login to your account.',
+    });
   }
   //Toogle password function
   togglePasswordVisibility() {
